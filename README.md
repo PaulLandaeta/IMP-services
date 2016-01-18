@@ -5,12 +5,12 @@ IonicMapProject services
 
 ## Installation
 
-Clone the project 
-install gradle 
-execute gradle clean
-execute gradle assemble 
-copy war in your tomcat wepapp
-run tomcat 
+#Clone the project 
+#install gradle 
+#execute gradle clean
+#execute gradle assemble 
+#copy war in your tomcat wepapp
+#run tomcat 
 
 ## API Reference
 
