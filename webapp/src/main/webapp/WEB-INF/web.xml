@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.0">
+	<!--RestEasy -->
+
+	<context-param>
+		<param-name>javax.ws.rs.core.Application</param-name>
+		<param-value>com.hcode.imp.resteasy.app</param-value>
+	</context-param>
+
+	<!--<context-param>
+		<param-name>resteasy.scan</param-name>
+		<param-value>true</param-value>
+	</context-param>-->
+
+	<context-param>
+		<param-name>resteasy.servlet.mapping.prefix</param-name>
+		<param-value>/api</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>
+			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
+		</listener-class>
+
+		<listener-class>
+			com.mojix.job.ServletJob
+		</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>
+			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
+		</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<!--RestEasy End-->
+
+
+	<!--Swagger-->
+
+	<context-param>
+		<param-name>resteasy.resources</param-name>
+		<param-value>com.wordnik.swagger.jaxrs.listing.ApiListingResourceJSON</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>resteasy.providers</param-name>
+		<param-value>
+			com.wordnik.swagger.jaxrs.listing.ApiDeclarationProvider
+			,com.wordnik.swagger.jaxrs.listing.ResourceListingProvider
+		</param-value>
+	</context-param>
+
+	<session-config>
+		<session-timeout>-1</session-timeout>
+	</session-config>
+
+	<servlet>
+		<servlet-name>DefaultJaxrsConfig</servlet-name>
+		<servlet-class>com.wordnik.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
+		<init-param>
+			<param-name>api.version</param-name>
+			<param-value>1.0.0</param-value>
+		</init-param>
+		<init-param>
+			<param-name>swagger.api.basepath</param-name>
+			<param-value>/webapp/api</param-value>
+		</init-param>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+
+	<!--Swagger End-->
+
+	<!-- CORS -->
+	<filter>
+		<filter-name>CORS</filter-name>
+		<filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+
+		<init-param>
+			<param-name>cors.allowOrigin</param-name>
+			<param-value>*</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>cors.supportedMethods</param-name>
+			<param-value>GET, POST, HEAD, PATCH, PUT, DELETE, OPTIONS</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>CORS</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- CORS End -->
+
+</web-app>
