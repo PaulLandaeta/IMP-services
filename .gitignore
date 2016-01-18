@@ -1,3 +1,4 @@
+/webapp/build
 /.gradle
 # Created by .ignore support plugin (hsz.mobi)
 ### Example user template template
@@ -8,3 +9,7 @@
 *.iml
 out
 gen
+/api/build
+/src
+/build
+/.idea
